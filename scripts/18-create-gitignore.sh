@@ -1,0 +1,42 @@
+#!/bin/bash
+
+echo "🙈 Creating .gitignore..."
+
+cat <<'EOF' > .gitignore
+
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vite
+.vite/
+
+EOF
+
+echo "✅ .gitignore created!"
