@@ -154,7 +154,93 @@ export const router = createBrowserRouter([
   },
 ]);
 EOF
- 
+
+echo "🧭 Creating Navbar..."
+
+mkdir -p components/Navbar
+
+cat <<EOF > components/Navbar/Navbar.tsx
+function Navbar(){
+  return(
+    <nav>
+      <h1>React Starter</h1>
+    </nav>
+  );
+}
+export default Navbar;
+EOF 
+
+echo "🦶 Creating Footer..."
+
+mkdir -p components/Footer
+
+cat <<EOF > components/Footer/Footer.tsx
+function Footer(){
+  return(
+    <footer>
+      <p>React Starter</p>
+    </footer>
+  );
+}
+export default Footer;
+EOF
+
+echo "🔗 Connecting Navbar and Footer..."
+
+cat <<EOF > layouts/MainLayout.tsx
+import { Outlet } from "react-router";
+import Navbar from "../components/Navbar/Navbar.tsx";
+import Footer from "../components/Footer/Footer.tsx";
+
+function MainLayout() {
+  return (
+    <>
+      <Navbar />
+
+      <main>
+        <Outlet />
+      </main>
+
+      <Footer />
+    </>
+  );
+}
+export default MainLayout;
+EOF
+
+echo "🔘 Creating Button..."
+
+mkdir -p components/Button
+
+cat <<EOF > components/Button/Button.tsx
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
+  variant?: "primary" | "secondary" | "danger";
+};
+
+function Button({
+  children,
+  variant = "primary",
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      type="button"
+      data-variant={variant}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+}
+
+export default Button;
+EOF
+
+
+
 # ==============================
 # Finish
 # ==============================
